@@ -1,5 +1,10 @@
 # Web-Player
 
+## Members:
+1. **Askar Nurzhan**
+2. **Kaliyev Yerlan**
+3. **Kakarov Damir**
+
 ## Project Description
 Web-Player is a web application for listening to music online. It provides users with a convenient interface for searching, playing, and managing music tracks. In addition, Web-Player offers an administrative interface for managing the system, content, and users.
 
