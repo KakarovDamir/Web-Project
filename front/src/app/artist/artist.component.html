@@ -1,0 +1,37 @@
+<div class="artist">
+    <div class="top-bar">
+        <img src="{{artist.img_url}}" alt="" class="img-title">
+        <h1 class="title">{{artist.name}}</h1>
+    </div>
+    <div class="artist-info">
+        <h3>Popular</h3>
+        <ul>
+            <li *ngFor="let song of songs" (click)="playSong(song)">
+                <img class="photo" src="{{song.img_url}}" alt="photo">
+                <p class="song-title">{{song.title}}</p>
+                <p class="play-button">&#9654;</p>
+                <!-- <audio controls>
+                    <source src="{{song.path}}" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio> -->
+            </li>
+            
+        </ul>
+        <footer>
+            <div class="team">
+                <h3 style="color: white;">Our Team</h3>
+                    <p><li>Kakarov Damir - Developer</li></p>
+                    <p><li>Kaliyev Yerlan - Developer</li></p>
+                    <p><li>Askar Nurzhan - Developer</li></p>
+            </div>
+            <div class="contacts">
+                <h3 style="color: white;">Contact Us</h3>
+                <p>Phone: +1 234 567 890</p>
+            </div>
+            <div class="legal">
+                <p>&copy; KBTU22BD. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </footer>
+    </div>
+</div>
+
