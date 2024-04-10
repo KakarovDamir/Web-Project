@@ -6,14 +6,11 @@
     <div class="artist-info">
         <h3>Popular</h3>
         <ul>
-            <li *ngFor="let song of songs" (click)="playSong(song)">
-                <img class="photo" src="{{song.img_url}}" alt="photo">
-                <p class="song-title">{{song.title}}</p>
-                <p class="play-button">&#9654;</p>
-                <!-- <audio controls>
-                    <source src="{{song.path}}" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio> -->
+            <li *ngFor="let song of songs">
+                <button (click)="playSong(song.id)" (click)="this.appComponent.playMusic()" class="song-title">
+                    <img class="photo" src="{{song.img_url}}" alt="photo">
+                    <p>{{song.title}}</p>
+                </button>
             </li>
             
         </ul>

@@ -9,7 +9,7 @@
     <ul>
         <li class="artist-card" *ngFor="let artist of artists">
             <a [routerLink]="['/artist', artist.name]">
-            <img class="art-img" src="{{artist.img_url}}" alt="photo">
+                <img class="art-img" src="{{artist.img_url}}" alt="photo">
             </a>
             <h3 class="art-name">{{artist.name}}</h3>
             <h4 class="prof">{{artist.prof}}</h4>
@@ -19,20 +19,14 @@
     <h2>Popular albums</h2>
     <ul>
         <li class="artist-card" *ngFor="let album of albums">
-            <img class="alb-img" src="{{album.img_url}}" alt="photo">
+            <a [routerLink]="['/album', album.title]">
+                <img class="alb-img" src="{{album.img_url}}" alt="photo">
+            </a>
             <h3 class="art-name">{{album.title}}</h3>
             <h4 class="prof">{{album.name}}</h4>
         </li>
     </ul>
 
-    <h2>Popular radio</h2>
-    <ul>
-        <li class="artist-card" *ngFor="let album of albums">
-            <img class="alb-img" src="{{album.img_url}}" alt="photo">
-            <h3 class="art-name">{{album.title}}</h3>
-            <h4 class="prof">{{album.name}}</h4>
-        </li>
-    </ul>
     <footer>
         <div class="team">
             <h3 style="color: white;">Our Team</h3>

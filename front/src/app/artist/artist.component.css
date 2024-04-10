@@ -35,7 +35,7 @@
     background-color: rgba(37, 34, 34, 0.5);
     position: absolute;
     width: 172.1vh;
-    height: 100vh;
+    height: 103.3vh;
     border: 1px solid rgb(92, 92, 92);
     border-radius: 7px;
 }
@@ -48,49 +48,40 @@ h3{
 ul{
     margin-left: -2%;
     font-size: large;
-    color: white;
     cursor: pointer;
     width: 171vh;
     list-style: none;
     border-radius: 4%;
-    margin-top: -2%;
 }
 
 ul img{
     width: 40px;
     height: 40px;
     border-radius: 15%;  
-    margin-left: 4%;
-    
-}
-
-ul li{
-    padding: 10px;
-    height: 35px;
-}
-
-ul li:hover{
-    background-color: rgba(92, 158, 227, 0.1);
-    border-radius: 1%;
-}
-
-.play-button{
-    margin-top: -4.5%;
-    margin-left: 1%;
-    width: 169vh;
-    height: 80px;
-    padding-top: 15px;
-}
-
-.play-button:hover{
-    color:  rgb(92, 158, 227);
+    padding: 5px;
 }
 
 .song-title{
-    margin-left: 8%;
+    margin-left: 4%;
     font-size: large;
     font-weight: 600;
-    margin-top: -3%;
+    width: 155vh;
+    justify-content: center;
+    background-color: rgba(37, 34, 34, 0);
+    text-align: left;
+    border: 1px solid rgba(37, 34, 34, 0);
+    color: white;
+    border-radius: 15px;
+    cursor: pointer;
+}
+.song-title:hover{
+    background-color:rgba(92, 158, 227, 0.1) ;
+}
+
+.song-title p{
+    margin-top: -4.3%;
+    margin-left: 8%;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
 .audio-player {

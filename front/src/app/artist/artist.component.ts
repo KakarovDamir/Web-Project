@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Songs } from '../models';
 import { POSTS3 } from '../fake-db2';
+import { AppComponent } from '../app.component';
+
 
 @Component({
   selector: 'app-artist',
@@ -16,10 +18,12 @@ import { POSTS3 } from '../fake-db2';
 export class ArtistComponent implements OnInit{
   artist!: Artists;
   songs!: Songs[];
+  playButton!: boolean;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, public appComponent: AppComponent) { }
 
   ngOnInit() {
+    this.playButton = true;
     this.route.paramMap.subscribe((params) => {
       const artistName = params.get('artistName');
       this.artist = POSTS2.find((artist) => artist.name == artistName) as Artists;
@@ -31,18 +35,14 @@ export class ArtistComponent implements OnInit{
     })
   }
 
-
-  playSong(song: Songs){
-    const audioElements = document.querySelectorAll('audio');
-    
-    audioElements.forEach((audio: HTMLAudioElement) => {
-      audio.pause();
-      audio.currentTime = 0;
-    });
-
-    const audioElement = document.querySelector(`audio[src="${song.path}"]`);
-    if (audioElement) {
-      audioElement;
+  playSong(id: Number) {
+    this.appComponent.getId(id);
+    if(this.playButton == false){
+      this.playButton = true;
+    }
+    else{
+      this.appComponent.pause();
+      this.playButton = false;
     }
   }
 

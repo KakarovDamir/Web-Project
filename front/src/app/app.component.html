@@ -31,10 +31,17 @@
         </nav>
     </header>
     <div class="un-header">
-        <!-- <audio controls>
-            <source src="{{song.path}}" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio> -->
+        <img class="song_img" src="{{ song.img_url }}" alt="photo">
+        <p class="song_title">{{ song.title }}</p>
+        <audio [src]="song.path" class="audio" id="audioPlayer"></audio>
+        <div>
+            <button class="prevButton" (click)="prevSong()" (click)="playMusic()">❮</button>
+            <button class="playButton" (click)="playMusic()" *ngIf="playButton">⯈</button>
+            <button class="stopeButton" (click)="pause()" *ngIf="!playButton">◼</button>
+            <button class="nextButton" (click)="nextSong()" (click)="playMusic()">❯</button><p></p>
+            <input class="duration" type="range" min="0" [max]="audioPlayer.duration" [(ngModel)]="currentTime" (input)="updateCurrentTime($event)">
+            <p class="in_p"><input type="range" min="0" max="100" [(ngModel)]="volume" (input)="changeVolume($event)" class="range" ></p>
+        </div>
     </div>
   </div>
   <div>
