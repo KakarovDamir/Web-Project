@@ -1,5 +1,4 @@
 import { Albums } from './models';
-import { Artists } from './models';
 
 export const POSTS: Albums[] = [
     {

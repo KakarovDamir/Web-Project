@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Songs } from '../models';
 import { POSTS3 } from '../fake-db2';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-search',
@@ -17,8 +18,9 @@ export class SearchComponent implements OnInit {
   filteredItems: any[] = [];
   searchQuery: string = '';
   searched: boolean = false;
+  playButton: boolean = true;
 
-  constructor (private route: ActivatedRoute,){}
+  constructor (private route: ActivatedRoute, public appComponent: AppComponent){}
 
   ngOnInit(){
     this.songs = POSTS3;
@@ -33,6 +35,17 @@ export class SearchComponent implements OnInit {
     }
     else{
       this.searched = true;
+    }
+  }
+
+  playSong(id: Number) {
+    this.appComponent.getId(id);
+    if(this.playButton == false){
+      this.playButton = true;
+    }
+    else{
+      this.appComponent.pause();
+      this.playButton = false;
     }
   }
 

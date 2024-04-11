@@ -4,7 +4,7 @@
 <div class="search">
     <div *ngIf="searched">
         <ul class="search-results">
-            <li class="result-card" *ngFor="let item of filteredItems">
+            <li class="result-card" *ngFor="let item of filteredItems" (click)="playSong(item.id)" (click)="this.appComponent.playMusic()">
                 <img class="result-art-img" src="{{item.img_url}}" alt="">
                 <h3 class="result-title">{{item.title}}</h3>
                 <h4 class="result-art-name">{{item.artist_name}}</h4>
@@ -13,7 +13,7 @@
     </div>
     <div *ngIf= "!searched">
         <ul>
-            <li class="card" *ngFor="let song of songs">
+            <li class="card" *ngFor="let song of songs" (click)="playSong(song.id)" (click)="this.appComponent.playMusic()">
                 <img class="art-img" src="{{song.img_url}}" alt="">
                 <h3 class="title">{{song.title}}</h3>
                 <h4 class="art-name">{{song.artist_name}}</h4>

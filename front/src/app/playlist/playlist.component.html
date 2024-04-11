@@ -1,1 +1,11 @@
-<p>playlist works!</p>
+<div style="width: 173.2vh; margin-left: 19%;" >
+    <ul style="display: flex; flex-wrap: wrap; justify-content: flex-start;">
+        <li class="card" *ngFor="let playlist of playlists"> 
+            <a [routerLink]="['/pl_album', playlist.title]">
+                <img class="card_img" src="{{playlist.img_url}}" alt="photo">
+            </a>
+            <h2 class="card_title">{{playlist.title}}</h2>
+            <h3 class="list_len">75 songs</h3>
+        </li>
+    </ul>
+</div>

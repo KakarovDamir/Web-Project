@@ -5,6 +5,12 @@ export interface Albums{
     name: string;
 }
 
+export interface PlayList{
+    id: number;
+    img_url: string;
+    title: string;
+}
+
 export interface Artists{
     id: number;
     img_url: string;
@@ -19,7 +25,7 @@ export interface Songs{
     artist_name: string;
     album_name: string;
     path: string;
-
+    liked: boolean;
 }
 
 export const POSTS2: Artists[] = [

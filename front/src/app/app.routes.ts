@@ -4,6 +4,7 @@ import { SearchComponent } from './search/search.component';
 import { PlaylistComponent } from './playlist/playlist.component';
 import { ArtistComponent } from './artist/artist.component';
 import { AlbumComponent } from './album/album.component';
+import { PlAlbumComponent } from './pl-album/pl-album.component';
 
 
 export const routes: Routes = [
@@ -13,5 +14,6 @@ export const routes: Routes = [
     {path: 'playlist', component: PlaylistComponent},
     {path: 'artist/:artistName', component: ArtistComponent},
     {path: 'album/:albumTitle', component: AlbumComponent},
+    {path: 'pl_album/:playlistTitle', component: PlAlbumComponent},
     {path: '**', redirectTo: 'home'}
 ];

@@ -1,0 +1,30 @@
+.card{
+    margin-left: 5%;
+    width: 280px;
+    height: 320px;
+    border-radius: 7%;
+    color: white;
+    list-style: none;
+    cursor: pointer;
+    
+}
+.card:hover{
+    background-color: rgb(33, 33, 33);
+}
+.card_img{
+    width: 250px;
+    height: 250px;
+    padding: 15px;
+    border-radius: 10%;
+}
+
+.card_title{
+    margin-left: 10%;
+    margin-top: -6%;
+}
+
+.list_len{
+    margin-top: -8%;
+    margin-left: 10%;
+    color: rgb(112, 112, 112);
+}
