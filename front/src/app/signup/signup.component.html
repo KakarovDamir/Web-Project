@@ -1,0 +1,29 @@
+
+<div class="parent">
+    <div class="container">
+        <div class = "img_container">
+            <img src="../assets/logo.png" alt="Web Player Logo" class="webplayer-logo">
+        </div>
+        <h2>Регистрация в Web Player</h2>
+        <div class="signup-box">
+            <form action="#">
+                <div class="input-box">
+                    <p>Электронная почта</p>
+                    <input type="email" [(ngModel)]="signupObj.Email" name="Email" required>
+                </div>
+                <div class="input-box">
+                    <p>Пароль</p>
+                    <input type="password" [(ngModel)]="signupObj.Password" name="Password" required>
+                </div>
+                <div class="input-box">
+                    <p>Подтвердите пароль</p>
+                    <input type="password" [(ngModel)]="signupObj.ConfirmPassword" name="ConfirmPassword" required>
+                </div>
+                <button type="button" class="btn" (click)="onSignup()">Зарегистрироваться</button>
+            </form>
+        <div class="signup-link">
+            <p>Уже есть аккаунт?</p>
+            <a [routerLink]="['/login']">Войти</a>
+        </div>
+    </div>
+</div>

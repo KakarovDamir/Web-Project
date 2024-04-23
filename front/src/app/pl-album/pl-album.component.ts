@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { PlayList } from '../models';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { POSTS } from '../fake-db';
 import { FormsModule } from '@angular/forms';
 import { POSTS3 } from '../fake-db2';
 import { AppComponent } from '../app.component';
@@ -30,7 +29,13 @@ export class PlAlbumComponent implements OnInit {
     })
 
     this.route.paramMap.subscribe((params) => {
-      this.songs = POSTS3.filter((song) => song.liked == true) as Songs[];
+      let playlistTitle = params.get('playlistTitle');
+      if (playlistTitle?.toLowerCase() == 'liked songs') {
+        this.songs = POSTS3.filter((song) => song.liked == true) as Songs[];
+      }
+      else{
+        this.songs = POSTS3.filter((song) => song.playlist_title == playlistTitle) as Songs[];
+      }
     })
   }
 

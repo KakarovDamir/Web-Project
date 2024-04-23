@@ -14,8 +14,7 @@ import { RouterModule } from '@angular/router';
 export class PlaylistComponent implements OnInit {
   playlists!: PlayList[];
 
-  constructor(){
-  }
+  constructor( ) {}
 
   ngOnInit(): void {
    this.playlists= POSTS4; 
