@@ -1,11 +1,20 @@
 <div style="width: 173.2vh; margin-left: 19%;" >
+    <button class="toggle" (click)="toggleDropdown()">+</button>
+    <div class="drop" *ngIf="isDropdownOpen" class="dropdown">
+        <fieldset style="color: white; margin-left: 10%;">
+            <input class="url" type="text" [(ngModel)]="url" placeholder="Image URL"><p></p>
+            <input class="title" type="text" [(ngModel)]="title" placeholder="Title"><p></p>
+            <button class="submit" type="submit" (click)="addItem()">Add Playlist</button>
+        </fieldset>
+    </div>
     <ul style="display: flex; flex-wrap: wrap; justify-content: flex-start;">
         <li class="card" *ngFor="let playlist of playlists"> 
-            <a [routerLink]="['/pl_album', playlist.title]">
+            <a [routerLink]="['/pl_album', playlist.id]">
                 <img class="card_img" src="{{playlist.img_url}}" alt="photo">
             </a>
             <h2 class="card_title">{{playlist.title}}</h2>
-            <h3 class="list_len">75 songs</h3>
+            <p><button class="card-delete" (click)="removeItem(playlist.id)">Delete</button></p>
+            <!-- <h3 class="list_len">75 songs</h3> -->
         </li>
     </ul>
 </div>

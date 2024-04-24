@@ -1,42 +1,92 @@
 import { Component, OnInit } from '@angular/core';
-import { PlayList } from '../models';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { POSTS3 } from '../fake-db2';
+
 import { AppComponent } from '../app.component';
-import { Songs } from '../models';
-import { POSTS4 } from '../fake-db3';
+import { Songs, PlayList } from '../models';
+import { MusicService } from '../musicService';
 
 @Component({
   selector: 'app-pl-album',
   standalone: true,
-  imports: [CommonModule, RouterModule,FormsModule],
+  imports: [
+    CommonModule, 
+    RouterModule,
+    FormsModule
+  ],
   templateUrl: './pl-album.component.html',
   styleUrl: './pl-album.component.css'
 })
+
 export class PlAlbumComponent implements OnInit {
   playlist!: PlayList;
   songs!: Songs[];
   playButton!: boolean;
 
-  constructor(private route: ActivatedRoute, public appComponent: AppComponent) { }
+  allSongs!: Songs[];
+  filteredItems: Songs[] = [];
+  searchQuery: string = '';
+  searched: boolean = false;
+  arr: Number[] = [];
+
+  constructor(
+    private route: ActivatedRoute, 
+    public appComponent: AppComponent,
+    private musicService: MusicService
+  ) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
-      const playlistTitle = params.get('playlistTitle');
-      this.playlist = POSTS4.find((playlist) => playlist.title == playlistTitle) as PlayList;
-    })
+    this.getPlaylist(Number(this.route.snapshot.paramMap.get('playlistId')));
+    this.getPlaylistSongs(Number(this.route.snapshot.paramMap.get('playlistId')));
+    this.getAllSongs();
+  }
 
-    this.route.paramMap.subscribe((params) => {
-      let playlistTitle = params.get('playlistTitle');
-      if (playlistTitle?.toLowerCase() == 'liked songs') {
-        this.songs = POSTS3.filter((song) => song.liked == true) as Songs[];
-      }
-      else{
-        this.songs = POSTS3.filter((song) => song.playlist_title == playlistTitle) as Songs[];
-      }
+  addtoPlaylist(song: Songs){
+    let a = Number(this.route.snapshot.paramMap.get('playlistId'));
+    this.arr = song.playlist;
+    this.arr.push(a);
+    song.playlist = this.arr;
+    this.musicService.updateSong(song).subscribe((data)=>{
+      this.getPlaylistSongs(Number(this.route.snapshot.paramMap.get('playlistId')));
     })
+  }
+
+  getAllSongs(){
+    this.musicService.getSongs().subscribe((data: Songs[])=>{
+      this.allSongs = data;
+    })
+  }
+
+  getPlaylist(id: Number){
+    this.musicService.getPlaylist(id).subscribe((data: PlayList) => {
+      this.playlist = data;
+    })
+  }
+
+  getPlaylistSongs(id: Number){
+    if (id === 1){
+      this.musicService.getSongs().subscribe((data: Songs[])=>{
+        this.songs = data.filter(song=> song.liked === true);
+      })
+    }
+    else{
+      this.musicService.getPlaylistSongs(id).subscribe((data) => {
+        this.songs = data;
+      })
+    }
+  }
+
+  search(): void {
+    this.filteredItems = this.allSongs.filter(item => 
+      item.title.toLowerCase().includes(this.searchQuery.toLowerCase()),
+    );
+    if(this.searchQuery == ""){
+      this.searched = false;
+    }
+    else{
+      this.searched = true;
+    }
   }
 
   playSong(id: Number) {

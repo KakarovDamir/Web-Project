@@ -4,6 +4,19 @@
         <h1 class="title">{{playlist.title}}</h1>
     </div>
     <div class="album-info">
+        <div class="top-bar">
+            <input type="text" placeholder="What do you want to play" [(ngModel)]="searchQuery" (input)="search()">
+        </div>
+        <div class="search">
+            <div *ngIf="searched">
+                <ul class="search-results">
+                    <li *ngFor="let song of filteredItems" style="color: white;">
+                        {{ song.title }}
+                        <button (click)="addtoPlaylist(song)">Add to Playlist</button>
+                      </li>
+                </ul>
+            </div>
+        </div>
         <h3>Popular</h3>
         <ul>
             <li *ngFor="let song of songs">

@@ -14,9 +14,9 @@ export const routes: Routes = [
     {path: 'home', component: HomeComponent},
     {path: 'search', component: SearchComponent},
     {path: 'playlist', component: PlaylistComponent},
-    {path: 'artist/:artistName', component: ArtistComponent},
-    {path: 'album/:albumTitle', component: AlbumComponent},
-    {path: 'pl_album/:playlistTitle', component: PlAlbumComponent},
+    {path: 'artist/:artistId', component: ArtistComponent},
+    {path: 'album/:albumId', component: AlbumComponent},
+    {path: 'pl_album/:playlistId', component: PlAlbumComponent},
     {path: 'login', component: LoginComponent},
     {path: 'signup', component: SignupComponent},
     {path: '**', redirectTo: 'home'}

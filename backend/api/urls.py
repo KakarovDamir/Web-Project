@@ -1,8 +1,16 @@
 from django.urls import path
 
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
 from api.views import *
 
 urlpatterns = [
+    path('login/', TokenObtainPairView.as_view()),
+    path('refresh/', TokenRefreshView.as_view()),
+
     path('artists/', artist_list),
     path('artists/<int:pk>/', artist_detail),
     path('artists/<int:pk>/songs/', artist_songs),

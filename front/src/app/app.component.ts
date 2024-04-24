@@ -1,21 +1,29 @@
 import { Component, OnInit, numberAttribute } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
-import { HomeComponent } from './home/home.component';  
-import { Songs } from './models';
-import { POSTS3 } from './fake-db2';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
+
+import { MusicService } from './musicService';
+import { HomeComponent } from './home/home.component';  
+import { Songs } from './models';
+import { PlaylistComponent } from './playlist/playlist.component';
+import { PlAlbumComponent } from './pl-album/pl-album.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule, HomeComponent,CommonModule, FormsModule, ReactiveFormsModule ],
+  imports: [
+    RouterModule, 
+    HomeComponent,
+    CommonModule, 
+    FormsModule, 
+    ReactiveFormsModule
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-
 
 export class AppComponent implements OnInit{
   title = 'Music';
@@ -26,19 +34,21 @@ export class AppComponent implements OnInit{
   playButton!: boolean;
   currentTime: number = 0;
   volume: number = 100;
+  liked!: boolean;
   
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+    private route: ActivatedRoute,
+    private musicService: MusicService,
+  ) { }
 
   ngOnInit() {
     this.audioPlayer = document.getElementById('audioPlayer') as HTMLAudioElement;
     this.audioPlayer.load();
     this.id = 7;
-    this.songs = POSTS3;
     this.playButton = true;
 
-    this.route.paramMap.subscribe((params) => {
-      this.song = POSTS3.find((song) => song.id == this.id) as Songs;
-    })
+    this.getSongs();
+    this.getSong(this.id);
 
     this.audioPlayer.addEventListener('ended', () => {
       this.nextSong();
@@ -48,6 +58,20 @@ export class AppComponent implements OnInit{
     this.audioPlayer.addEventListener('timeupdate', () => {
       this.currentTime = this.audioPlayer.currentTime;
     });
+  }
+
+  getSongs() {
+    this.musicService.getSongs().subscribe((songs: Songs[]) => {
+      this.songs = songs;
+      this.liked = this.song.liked;
+    });
+  }
+
+  getSong(id: number){
+    this.musicService.getSong(id).subscribe((song: Songs) => {
+      this.song = song;
+    });
+    this.liked = this.song.liked;
   }
 
   seekTo(time: number) {
@@ -79,28 +103,37 @@ export class AppComponent implements OnInit{
 
   prevSong() {
     if (this.id == 1) {
-      this.id = POSTS3.length;
+      this.id = 19;
     }
     else {
       this.id = this.id - 1;
     }
-    this.song = POSTS3.find((song) => song.id == this.id) as Songs;
+    this.song = this.songs[this.id];
+    this.liked = this.song.liked;
   }
 
   nextSong() {
-    if (this.id == POSTS3.length) {
+    if (this.id == 19) {
       this.id = 1;
     }
     else {
       this.id = this.id + 1;
     }
-    this.song= POSTS3.find((song) => song.id == this.id) as Songs;
+    this.song = this.songs[this.id];
+    this.liked = this.song.liked;
   }
 
   getId(ID: Number){
-    this.route.paramMap.subscribe((params) => {
-      this.song = POSTS3.find((song) => song.id == ID) as Songs;
-    })
+    this.song = this.songs[Number(ID)-1];
+    this.liked = this.song.liked;
     this.id = numberAttribute(ID);
+  }
+
+  addLikedSong() {
+    this.song.liked = !this.song.liked;
+    this.liked = !this.liked;
+    this.musicService.updateSong(this.song).subscribe(() => {
+      this.getSongs();
+    });
   }
 }

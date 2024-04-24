@@ -1,13 +1,13 @@
 <div class="top-bar">
-    <input type="text" placeholder="   What do you want to play" [(ngModel)]="searchQuery" (input)="search()">
+    <input type="text" placeholder="What do you want to play" [(ngModel)]="searchQuery" (input)="search()">
 </div>
 <div class="search">
     <div *ngIf="searched">
         <ul class="search-results">
-            <li class="result-card" *ngFor="let item of filteredItems" (click)="playSong(item.id)" (click)="this.appComponent.playMusic()">
+            <li class="result-card" *ngFor="let item of filteredItems" (click)="playSong(item.id)" (click)="this.appComponent.playMusic()" >
                 <img class="result-art-img" src="{{item.img_url}}" alt="">
                 <h3 class="result-title">{{item.title}}</h3>
-                <h4 class="result-art-name">{{item.artist_name}}</h4>
+                <!-- <h4 class="result-art-name">{{artist.name}}</h4> -->
             </li>
         </ul>
     </div>
@@ -16,7 +16,7 @@
             <li class="card" *ngFor="let song of songs" (click)="playSong(song.id)" (click)="this.appComponent.playMusic()">
                 <img class="art-img" src="{{song.img_url}}" alt="">
                 <h3 class="title">{{song.title}}</h3>
-                <h4 class="art-name">{{song.artist_name}}</h4>
+                <!-- <h4 class="art-name">{{}}</h4> -->
             </li>
         </ul>
     </div>

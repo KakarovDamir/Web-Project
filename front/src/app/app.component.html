@@ -35,6 +35,8 @@
         <p class="song_title">{{ song.title }}</p>
         <audio [src]="song.path" class="audio" id="audioPlayer"></audio>
         <div>
+            <button class="like" *ngIf="liked" (click)="addLikedSong()">❤️</button>
+            <button class="like" *ngIf="!liked" (click)="addLikedSong()">🤍</button>
             <button class="prevButton" (click)="prevSong()" (click)="playMusic()">❮</button>
             <button class="playButton" (click)="playMusic()" *ngIf="playButton">⯈</button>
             <button class="stopeButton" (click)="pause()" *ngIf="!playButton">◼</button>

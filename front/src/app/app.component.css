@@ -145,6 +145,14 @@
   .nextButton::after, .prevButton::after{
     background-color: rgb(87, 87, 87);
   }
+  
+  .like{
+    background-color: rgb(28, 25, 25);
+    margin-left: 80%;
+    border: 1px solid rgb(28, 25, 25);
+    font-size: 20px;
+    padding: 0;
+  }
 
   .duration{
     -webkit-appearance: none;

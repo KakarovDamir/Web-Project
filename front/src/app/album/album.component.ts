@@ -1,39 +1,53 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Albums } from '../models';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Songs } from '../models';
-import { POSTS3 } from '../fake-db2';
-import { POSTS } from '../fake-db';
+
+import { Songs,Albums } from '../models';
 import { AppComponent } from '../app.component';
+import { MusicService } from '../musicService';
 
 
 @Component({
   selector: 'app-album',
   standalone: true,
-  imports: [RouterModule, CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    RouterModule, 
+    CommonModule, 
+    FormsModule, 
+    ReactiveFormsModule
+  ],
   templateUrl: './album.component.html',
   styleUrl: './album.component.css'
 })
+
 export class AlbumComponent implements OnInit {
   album!: Albums;
   songs!: Songs[];
   playButton!: boolean;
 
-  constructor(private route: ActivatedRoute, public appComponent: AppComponent) { }
+  constructor(
+    private route: ActivatedRoute, 
+    public appComponent: AppComponent,
+    private musicService: MusicService
+  ) { }
 
   ngOnInit() {
     this.playButton = true;
 
-    this.route.paramMap.subscribe((params) => {
-      const albumTitle = params.get('albumTitle');
-      this.album = POSTS.find((album) => album.title == albumTitle) as Albums;
-    })
+    this.getAlbum(Number(this.route.snapshot.paramMap.get('albumId')!));
+    this.getAlbumSongs(Number(this.route.snapshot.paramMap.get('albumId')!));
+  }
 
-    this.route.paramMap.subscribe((params) => {
-      const albumTitle = params.get('albumTitle');
-      this.songs = POSTS3.filter((song) => song.album_name == albumTitle) as Songs[];
+  getAlbum(id: Number) {
+    this.musicService.getAlbum(id).subscribe((data: Albums) => {
+      this.album = data;
+    })
+  }
+
+  getAlbumSongs(id: Number) {
+    this.musicService.getAlbumSongs(id).subscribe((data: Songs[])=> {
+      this.songs = data;
     })
   }
 
