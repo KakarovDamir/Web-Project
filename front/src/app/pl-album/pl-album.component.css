@@ -45,6 +45,44 @@ h3{
     margin-top: 6%;
     margin-left: 3%;
 }
+
+.top{
+    position: absolute;
+    margin-left: 38%;
+    margin-top: 2%;
+}
+.top input{
+    border: 1px solid rgb(45, 45, 45);
+    padding: 12px;
+    background-color: rgb(45, 45, 45);
+    border-radius: 15px;
+    color: white;
+    font-size: 15px;
+    box-shadow: 0px 0px 30px 5px rgba(79, 109, 199, 0.5);
+}
+.search{
+    position: absolute;
+    margin-left: 31%;
+    margin-top: 5%;
+}
+
+.search ul{
+    width:300px;
+}
+.search ul li{
+    display: flex;
+    flex-direction: row;
+    margin-top: 2%;
+}
+.search ul li button{
+    border: 1px solid rgb(115, 115, 115);
+    background-color: rgba(114, 141, 222, 0.5);
+    border-radius: 15px;
+    color: white;
+    margin-left: auto;
+    cursor: pointer;
+}
+
 ul{
     margin-left: -2%;
     font-size: large;
@@ -86,6 +124,27 @@ ul img{
 
 .audio-player {
     font-family: Arial, sans-serif;
+}
+
+.del{
+    margin-left: 88%;
+    margin-top: -3.2%;
+}
+.del button{
+    width: 25px;
+    height: 25px;
+    border: 1px solid rgba(255, 0, 0, 0.772);
+    background-color: rgba(255, 0, 0, 0.772);
+    border-radius: 15px;
+    cursor: pointer;
+    color: white;
+    margin-left: auto
+}
+
+.del button:hover{
+    background-color: rgb(109, 27, 27);
+    border: 1px solid  rgb(109, 27, 27);
+
 }
 
 footer {

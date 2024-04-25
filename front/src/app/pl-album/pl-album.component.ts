@@ -44,12 +44,36 @@ export class PlAlbumComponent implements OnInit {
 
   addtoPlaylist(song: Songs){
     let a = Number(this.route.snapshot.paramMap.get('playlistId'));
-    this.arr = song.playlist;
-    this.arr.push(a);
-    song.playlist = this.arr;
-    this.musicService.updateSong(song).subscribe((data)=>{
-      this.getPlaylistSongs(Number(this.route.snapshot.paramMap.get('playlistId')));
-    })
+    if (a === 1){
+      song.liked = true;
+      this.musicService.updateSong(song).subscribe((data)=>{
+        this.getPlaylistSongs(Number(this.route.snapshot.paramMap.get('playlistId')));
+      })
+    }else{
+      this.arr = song.playlist;
+      this.arr.push(a);
+      song.playlist = this.arr;
+      this.musicService.updateSong(song).subscribe((data)=>{
+        this.getPlaylistSongs(Number(this.route.snapshot.paramMap.get('playlistId')));
+      })
+  }
+  }
+
+  delFromPlaylist(song: Songs){
+    let a = Number(this.route.snapshot.paramMap.get('playlistId'));
+    if (a === 1){
+      song.liked = false;
+      this.musicService.updateSong(song).subscribe((data)=>{
+        this.getPlaylistSongs(Number(this.route.snapshot.paramMap.get('playlistId')));
+      })
+    }else{
+      this.arr = song.playlist;
+      this.arr.splice(this.arr.indexOf(a), 1);
+      song.playlist = this.arr;
+      this.musicService.updateSong(song).subscribe((data)=>{
+        this.getPlaylistSongs(Number(this.route.snapshot.paramMap.get('playlistId')));
+      })
+    }
   }
 
   getAllSongs(){

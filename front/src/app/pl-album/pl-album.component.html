@@ -4,8 +4,8 @@
         <h1 class="title">{{playlist.title}}</h1>
     </div>
     <div class="album-info">
-        <div class="top-bar">
-            <input type="text" placeholder="What do you want to play" [(ngModel)]="searchQuery" (input)="search()">
+        <div class="top">
+            <input type="text" placeholder="Search " [(ngModel)]="searchQuery" (input)="search()">
         </div>
         <div class="search">
             <div *ngIf="searched">
@@ -24,24 +24,10 @@
                     <img class="photo" src="{{song.img_url}}" alt="photo">
                     <p>{{song.title}}</p>
                 </button>
+                <p class="del"><button (click)="delFromPlaylist(song)">-</button></p>
             </li>
             
         </ul>
-        <footer>
-            <div class="team">
-                <h3 style="color: white;">Our Team</h3>
-                    <p><li>Kakarov Damir - Developer</li></p>
-                    <p><li>Kaliyev Yerlan - Developer</li></p>
-                    <p><li>Askar Nurzhan - Developer</li></p>
-            </div>
-            <div class="contacts">
-                <h3 style="color: white;">Contact Us</h3>
-                <p>Phone: +1 234 567 890</p>
-            </div>
-            <div class="legal">
-                <p>&copy; KBTU22BD. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-            </div>
-        </footer>
     </div>
 </div>
 
