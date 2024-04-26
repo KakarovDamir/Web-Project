@@ -29,6 +29,11 @@ export interface Songs{
     playlist:   Number[];
 }
 
+export interface Token{
+    access: String;
+    refresh: String;
+}
+
 // export const POSTS2: Artists[] = [
 //     {
 //         id: 1,

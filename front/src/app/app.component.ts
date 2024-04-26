@@ -102,8 +102,11 @@ export class AppComponent implements OnInit{
   }
 
   prevSong() {
-    if (this.id == 1) {
-      this.id = 19;
+    if (this.id === 1) {
+      this.id = 31;
+    }
+    else if(this.id === 17){
+      this.id = 15;
     }
     else {
       this.id = this.id - 1;
@@ -113,8 +116,11 @@ export class AppComponent implements OnInit{
   }
 
   nextSong() {
-    if (this.id == 19) {
+    if (this.id === 31) {
       this.id = 1;
+    }
+    else if(this.id === 15){
+      this.id = 17;
     }
     else {
       this.id = this.id + 1;
@@ -123,10 +129,16 @@ export class AppComponent implements OnInit{
     this.liked = this.song.liked;
   }
 
-  getId(ID: Number){
-    this.song = this.songs[Number(ID)-1];
+  getId(Id: Number){
+    if (Number(Id) > 16){
+      Id = Number(Id) - 2;
+    }
+    else{
+      Id = Number(Id) - 1;
+    }
+    this.song = this.songs[Number(Id)];
     this.liked = this.song.liked;
-    this.id = numberAttribute(ID);
+    this.id = Number(this.song.id);
   }
 
   addLikedSong() {

@@ -5,8 +5,6 @@ import { PlaylistComponent } from './playlist/playlist.component';
 import { ArtistComponent } from './artist/artist.component';
 import { AlbumComponent } from './album/album.component';
 import { PlAlbumComponent } from './pl-album/pl-album.component';
-import { SignupComponent } from './signup/signup.component';
-import { LoginComponent } from './login/login.component';
 
 
 export const routes: Routes = [
@@ -17,7 +15,5 @@ export const routes: Routes = [
     {path: 'artist/:artistId', component: ArtistComponent},
     {path: 'album/:albumId', component: AlbumComponent},
     {path: 'pl_album/:playlistId', component: PlAlbumComponent},
-    {path: 'login', component: LoginComponent},
-    {path: 'signup', component: SignupComponent},
     {path: '**', redirectTo: 'home'}
 ];

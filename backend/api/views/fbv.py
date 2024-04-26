@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 from api.models import Artist, Album, Song
-from api.serializers import ArtistSerializer, AlbumSerializer, SongSerializer
+from api.serializers import ArtistSerializer, SongSerializer,AlbumSeriazer
 
 
 @api_view(["GET", "POST"])
@@ -62,10 +62,10 @@ def artist_songs(request, pk=None):
 def album_list(request):
     if request.method == "GET":
         albums = Album.objects.all()
-        serializer = AlbumSerializer(albums, many=True)
+        serializer = AlbumSeriazer(albums, many=True)
         return Response(serializer.data)
     elif request.method == "POST":
-        serializer = AlbumSerializer(data=request.data)
+        serializer = AlbumSeriazer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -79,10 +79,10 @@ def album_detail(request, pk=None):
         return Response({"error": str(e)})
 
     if request.method == "GET":
-        serializer = AlbumSerializer(album)
+        serializer = AlbumSeriazer(album)
         return Response(serializer.data)
     elif request.method == "PUT":
-        serializer = AlbumSerializer(
+        serializer = AlbumSeriazer(
             instance=album,
             data=request.data
         )

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { Albums, Artists, PlayList, Songs } from './models';
+import { Albums, Artists, PlayList, Songs, Token } from './models';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,12 @@ export class MusicService {
   BASE_URL = 'http://localhost:8000'
 
   constructor(private http: HttpClient) { }
+
+  login(username: string, password: string): Observable<Token> {
+    return this.http.post<Token>(
+      `${this.BASE_URL}/api/login/`, 
+      {username,password})
+  }
 
 // ------------------------Artists------------------------------------------------------------
 

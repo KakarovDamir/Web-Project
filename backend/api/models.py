@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Album(models.Model):
     img_url = models.TextField()
@@ -23,6 +24,12 @@ class Album(models.Model):
 class Playlist(models.Model):
     img_url = models.TextField()
     title = models.CharField(max_length=255)
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="playlists",
+        null=True,blank=True
+    )
 
     def __str__(self):
         return f"ID: {self.id}, Title: {self.title}, Img_url: {self.img_url}"
@@ -61,7 +68,7 @@ class Artist(models.Model):
 class Song(models.Model):
     title = models.CharField(max_length=255)
     img_url = models.TextField()
-    artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE, blank=True, null=True)
     album = models.ForeignKey(Album, on_delete=models.CASCADE, blank=True, null=True)
     path = models.CharField(max_length=255)
     liked = models.BooleanField()

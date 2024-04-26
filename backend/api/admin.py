@@ -15,7 +15,7 @@ class AlbumAdmin(admin.ModelAdmin):
 
 @admin.register(Playlist)
 class PlaylistAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'img_url')
+    list_display = ('id', 'title', 'img_url', 'user')
     search_fields = ('title',)
 
 @admin.register(Song)

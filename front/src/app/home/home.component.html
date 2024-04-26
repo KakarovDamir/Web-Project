@@ -1,46 +1,67 @@
-
-<div class="top-bar">
-    <a [routerLink]="['/signup']" class="signup-button"><p>Sign up</p></a>
-    <a [routerLink]="['/login']" class="login-button"><p>Login</p></a>
-</div>
-
-<div class="home">
-    <h2 class="hh2">Popular Artists</h2>
-    <ul>
-        <li class="artist-card" *ngFor="let artist of artists">
-            <a [routerLink]="['/artist', artist.id]">
-                <img class="art-img" src="{{artist.img_url}}" alt="photo">
-            </a>
-            <h3 class="art-name">{{artist.name}}</h3>
-            <h4 class="prof">{{artist.prof}}</h4>
-        </li>
-    </ul>
-
-    <h2>Popular albums</h2>
-    <ul>
-        <li class="artist-card" *ngFor="let album of albums">
-            <a [routerLink]="['/album', album.id]">
-                <img class="alb-img" src="{{album.img_url}}" alt="photo">
-            </a>
-            <h3 class="art-name">{{album.title}}</h3>
-            <h4 class="prof">{{album.name}}</h4>
-        </li>
-    </ul>
-
-    <footer>
-        <div class="team">
-            <h3 style="color: white;">Our Team</h3>
-                <p><li>Kakarov Damir - Developer</li></p>
-                <p><li>Kaliyev Yerlan - Developer</li></p>
-                <p><li>Askar Nurzhan - Developer</li></p>
+<ng-container *ngIf="!logged">
+    <div class="parent">
+        <div class="container">
+          <img src="../assets/logo.png" alt="Web Player Logo" class="webplayer-logo">
+          <h2>Войти в Web Player</h2>
+          <div class="login-box">
+            <form action="#">
+              <div class="input-box">
+                <p>Электронная почта или имя пользователя</p>
+                <input type="text" [(ngModel)]="username" name="Name" required>
+              </div>
+              <div class="input-box">
+                <p>Пароль</p>
+                <input type="password" [(ngModel)]="password" name="Password" required>
+              </div>
+              <button type="button" class="btn" (click)="login()">Войти</button>
+            </form>
         </div>
-        <div class="contacts">
-            <h3 style="color: white;">Contact Us</h3>
-            <p>Phone: +1 234 567 890</p>
-        </div>
-        <div class="legal">
-            <p>&copy; KBTU22BD. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-        </div>
-    </footer>    
-</div>
-  
+      </div>
+    </div>    
+</ng-container>
+
+<ng-container *ngIf="logged">
+    <div class="top-bar">
+        <button class="login-button" (click)="logout()">Logout</button>
+    </div>
+
+    <div class="home">
+        <h2 class="hh2">Popular Artists</h2>
+        <ul>
+            <li class="artist-card" *ngFor="let artist of artists">
+                <a [routerLink]="['/artist', artist.id]">
+                    <img class="art-img" src="{{artist.img_url}}" alt="photo">
+                </a>
+                <h3 class="art-name">{{artist.name}}</h3>
+                <h4 class="prof">{{artist.prof}}</h4>
+            </li>
+        </ul>
+
+        <h2>Popular albums</h2>
+        <ul>
+            <li class="artist-card" *ngFor="let album of albums">
+                <a [routerLink]="['/album', album.id]">
+                    <img class="alb-img" src="{{album.img_url}}" alt="photo">
+                </a>
+                <h3 class="art-name">{{album.title}}</h3>
+                <h4 class="prof">{{album.name}}</h4>
+            </li>
+        </ul>
+
+        <footer>
+            <div class="team">
+                <h3 style="color: white;">Our Team</h3>
+                    <p><li>Kakarov Damir - Developer</li></p>
+                    <p><li>Kaliyev Yerlan - Developer</li></p>
+                    <p><li>Askar Nurzhan - Developer</li></p>
+            </div>
+            <div class="contacts">
+                <h3 style="color: white;">Contact Us</h3>
+                <p>Phone: +1 234 567 890</p>
+            </div>
+            <div class="legal">
+                <p>&copy; KBTU22BD. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </footer>    
+    </div>
+</ng-container>
